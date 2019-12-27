@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: './src/index.js',
     module: {
         rules: [
             {
@@ -13,6 +14,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
+                    MiniCSSExtractPlugin.loader,
                     'css-loader',
                     'sass-loader'
                 ]
@@ -37,6 +39,7 @@ module.exports = {
             filename: 'index.html',
             template: 'index.html',
             inject: true
-        })
+        }),
+        new MiniCSSExtractPlugin()
     ],
 }
