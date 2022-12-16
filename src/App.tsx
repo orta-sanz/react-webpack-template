@@ -1,7 +1,6 @@
-import React from 'react';
 import { Button } from '@components';
 
-const App = () => {
+export const App = () => {
     const onButtonClick = () => alert('Button clicked');
 
     return (
@@ -9,7 +8,6 @@ const App = () => {
             <h1>Hello World!</h1>
             <Button label="Example button" callBack={onButtonClick} />
         </>
-    )
-}
+    );
+};
 
-export default App;
