@@ -4,9 +4,6 @@ module.exports = {
     ...baseConfig,
     mode: 'development',
     devServer: {
-        hot: true,
-        watchOptions: {
-            poll: true
-        }
-    }
+        open: true,
+    },
 };

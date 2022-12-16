@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
+        "module": "commonjs",
+        "target": "ESNext",
+        "allowJs": true,
+        "paths": {
+            "@components": ["./src/components"],
+            "@components/*": ["./src/components/*"]
+        }
+    },
+    "include": ["src", "tests"],
+    "exclude": ["node_modules"]
+}

@@ -1,45 +1,39 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    MiniCSSExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ]
-            },
-            {
-                test: /\.js$/,
-                use: 'babel-loader'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-typescript'],
+                    },
+                },
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-                use: 'url-loader?limit=25000'
+                use: 'url-loader?limit=25000',
             },
             {
                 test: /\.(svg|png|jpg)$/,
-                loader: 'file-loader'
-            }
-        ]
+                loader: 'file-loader',
+            },
+        ],
+    },
+    resolve: {
+        plugins: [new TsconfigPathsPlugin()],
+        extensions: ['.ts', '.tsx', '.js'],
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'index.html',
-            inject: true
+            template: './src/index.html',
         }),
-        new MiniCSSExtractPlugin()
     ],
-}
+};
